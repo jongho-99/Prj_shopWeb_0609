@@ -1,0 +1,151 @@
+@charset "UTF-8";
+
+body {
+  font-family: sans-serif;
+  background: black;
+  margin: 0;
+  padding: 20px;
+}
+
+.order-container {
+  max-width: 1100px;
+  margin: auto;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.breadcrumb {
+  font-size: 14px;
+  color: #888;
+  float: right;
+}
+
+.order-main > form {
+  display: flex;
+  gap: 20px;
+}
+
+.order-left {
+  flex: 2;
+}
+
+.order-right {
+  flex: 1;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 8px;
+  background: #fafafa;
+}
+
+.order-section {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+  background: #f9f9f9;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.change-btn {
+  font-size: 12px;
+  padding: 4px 8px;
+  background: #eee;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.badge {
+  display: inline-block;
+  background: #eee;
+  font-size: 12px;
+  padding: 2px 6px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  color:black;
+}
+
+.address-info p {
+  margin: 0;
+  font-size: 14px;
+  color:white;
+}
+
+.delivery-msg {
+  font-size: 14px;
+}
+
+.payment-options label {
+  font-size: 14px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.tag {
+  background: #ff4040;
+  color: #fff;
+  padding: 2px 6px;
+  font-size: 11px;
+  border-radius: 4px;
+  margin-left: 6px;
+}
+
+.other-methods a {
+  font-size: 14px;
+  color: #333;
+}
+
+.receipt {
+  font-size: 14px;
+}
+
+.order-note {
+  font-size: 14px;
+  color: #555;
+  margin-top: 10px;
+}
+
+.summary p {
+  display: flex;
+  justify-content: space-between;
+  margin: 8px 0;
+  font-size: 14px;
+  color:black;
+}
+
+.summary hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 12px 0;
+}
+
+.summary .total {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.agreement {
+  font-size: 13px;
+  margin-top: 20px;
+}
+
+.pay-btn {
+  margin-top: 20px;
+  width: 100%;
+  background: #007aff;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
