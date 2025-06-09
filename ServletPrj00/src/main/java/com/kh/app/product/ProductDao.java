@@ -9,9 +9,7 @@ import java.sql.SQLException;
 import com.kh.app.db.JDBCTemplate;
 
 public class ProductDao {
-	
-	
-	//재고확인 셀렉트
+
 	public ProductVo check(String productNo, String size) throws Exception {
 	    Connection conn = JDBCTemplate.getConn();
 
@@ -38,15 +36,15 @@ public class ProductDao {
 	  
 	    return productVo;
 	}
+
 	
-	//구매내역 인서트
 	public int insertOrder(OrderVo vo) throws Exception {
 	    Connection conn = JDBCTemplate.getConn();
 	    PreparedStatement pstmt = null;
 	    int result = 0;
 
-	    String sql = "INSERT INTO ORDER_HEADER (ORDER_NO, ORDER_ID, ORDER_USER, ORDER_CNT, ORDER_DATE, DELIVERY_ADDRESS, DELIVERY_TYPE) "
-	               + "VALUES (SEQ_ORDER.NEXTVAL, ?, ?, ?, SYSDATE, ?, ?)";
+	    String sql = "INSERT INTO ORDER_HEADER (ORDER_NO, ORDER_ID, ORDER_USER, ORDER_CNT, ORDER_DATE, DELIVERY_ADDRESS, DELIVERY_TYPE, ORDER_SIZE) "
+	               + "VALUES (SEQ_ORDER.NEXTVAL, ?, ?, ?, SYSDATE, ?, ?, ?)";
 
 	    try {
 	        pstmt = conn.prepareStatement(sql);
@@ -55,6 +53,7 @@ public class ProductDao {
 	        pstmt.setString(3, vo.getOrder_Cnt());
 	        pstmt.setString(4, vo.getDelivery_Address());
 	        pstmt.setString(5, vo.getDelivery_Type());
+	        pstmt.setString(6, vo.getOrder_Size());
 
 	        result = pstmt.executeUpdate();
 
@@ -65,27 +64,38 @@ public class ProductDao {
 	        }
 	    } finally {
 	    	conn.close();
+
 	    }
 
 	    return result;
 	}
 	
-	
-	
 	public int updateProduct(OrderVo vo) throws Exception {
 		Connection conn = JDBCTemplate.getConn();
-		PreparedStatement pstmt = null;
-		int result = 0;
-		
-		try {
-			String sql = "UPDATE PRODUCT SET PRODUCT_CNT = PRODUCT_CNT -"+vo.getOrder_Cnt()+" WHERE PRODUCT_NO = ? AND PRODUCT_SIZE = ?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, vo.getOrder_Id());
-			result = pstmt.executeUpdate();
-		} finally {
-			pstmt.close();
-		}
-		return result;
+	    PreparedStatement pstmt = null;
+	    int result = 0;
+
+	    String sql = "UPDATE PRODUCT SET PRODUCT_CNT = PRODUCT_CNT - "+vo.getOrder_Cnt()+" WHERE PRODUCT_NO = ? AND PRODUCT_SIZE = ?";
+
+	    try {
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(1, vo.getOrder_Id());
+	        pstmt.setString(2, vo.getOrder_Size());
+
+
+	        result = pstmt.executeUpdate();
+
+	        if (result == 1) {
+	            conn.commit();
+	        } else {
+	        	conn.rollback();
+	        }
+	    } finally {
+	    	conn.close();
+
+	    }
+
+	    return result;
 	}
 	
 	

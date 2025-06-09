@@ -43,11 +43,13 @@ public class ProductBuy2Controller extends HttpServlet {
 
         
         OrderVo orderVo = new OrderVo();
-        orderVo.setOrder_Id(productVo.getProduct_Id());           
+        
+        orderVo.setOrder_Id(productVo.getProduct_No());           
         orderVo.setOrder_User(userId);                            
         orderVo.setOrder_Cnt(quantityStr);                        
         orderVo.setDelivery_Address(address);                     
-        orderVo.setDelivery_Type(deliveryType);                   
+        orderVo.setDelivery_Type(deliveryType);
+        orderVo.setOrder_Size(productVo.getProduct_Size());                   
 
         
         ProductDao dao = new ProductDao();

@@ -9,12 +9,13 @@ public class OrderVo {
 	private String order_Date;
 	private String delivery_Address;
 	private String delivery_Type;
+	private String order_Size;
 	public OrderVo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public OrderVo(String order_No, String order_Id, String order_User, String order_Cnt, String order_Date,
-			String delivery_Address, String delivery_Type) {
+			String delivery_Address, String delivery_Type, String order_Size) {
 		super();
 		this.order_No = order_No;
 		this.order_Id = order_Id;
@@ -23,12 +24,13 @@ public class OrderVo {
 		this.order_Date = order_Date;
 		this.delivery_Address = delivery_Address;
 		this.delivery_Type = delivery_Type;
+		this.order_Size = order_Size;
 	}
 	@Override
 	public String toString() {
 		return "OrderVo [order_No=" + order_No + ", order_Id=" + order_Id + ", order_User=" + order_User
 				+ ", order_Cnt=" + order_Cnt + ", order_Date=" + order_Date + ", delivery_Address=" + delivery_Address
-				+ ", delivery_Type=" + delivery_Type + "]";
+				+ ", delivery_Type=" + delivery_Type + ", order_Size=" + order_Size + "]";
 	}
 	public String getOrder_No() {
 		return order_No;
@@ -72,6 +74,13 @@ public class OrderVo {
 	public void setDelivery_Type(String delivery_Type) {
 		this.delivery_Type = delivery_Type;
 	}
+	public String getOrder_Size() {
+		return order_Size;
+	}
+	public void setOrder_Size(String order_Size) {
+		this.order_Size = order_Size;
+	}
+	
 	
 	
 	
