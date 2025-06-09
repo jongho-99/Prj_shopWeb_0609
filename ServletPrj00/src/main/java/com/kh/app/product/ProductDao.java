@@ -9,7 +9,9 @@ import java.sql.SQLException;
 import com.kh.app.db.JDBCTemplate;
 
 public class ProductDao {
-
+	
+	
+	//재고확인 셀렉트
 	public ProductVo check(String productNo, String size) throws Exception {
 	    Connection conn = JDBCTemplate.getConn();
 
@@ -36,7 +38,8 @@ public class ProductDao {
 	  
 	    return productVo;
 	}
-
+	
+	//구매내역 인서트
 	public int insertOrder(OrderVo vo) throws Exception {
 	    Connection conn = JDBCTemplate.getConn();
 	    PreparedStatement pstmt = null;
@@ -62,10 +65,27 @@ public class ProductDao {
 	        }
 	    } finally {
 	    	conn.close();
-	    	conn.close();
 	    }
 
 	    return result;
+	}
+	
+	
+	
+	public int updateProduct(OrderVo vo) throws Exception {
+		Connection conn = JDBCTemplate.getConn();
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			String sql = "UPDATE PRODUCT SET PRODUCT_CNT = PRODUCT_CNT -"+vo.getOrder_Cnt()+" WHERE PRODUCT_NO = ? AND PRODUCT_SIZE = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getOrder_Id());
+			result = pstmt.executeUpdate();
+		} finally {
+			pstmt.close();
+		}
+		return result;
 	}
 	
 	

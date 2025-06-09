@@ -52,14 +52,16 @@ public class ProductBuy2Controller extends HttpServlet {
         
         ProductDao dao = new ProductDao();
         int result = 0;
+        int result2 = 0;
 		try {
 			result = dao.insertOrder(orderVo);
+			result2 = dao.updateProduct(orderVo);
 		} catch (Exception e) {
 			
 			e.printStackTrace();
 		}
 
-        if (result == 1) {
+        if (result == 1 && result2 == 1) {
             s.setAttribute("alertMsg", "주문이 완료되었습니다.");
             resp.sendRedirect("/home");  
         } else {
